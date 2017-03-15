@@ -14,7 +14,18 @@
       time_in_seconds: 3600,
       time_format: 'MM:ss',
       tick: function(timer, time_in_seconds, formatted_time) {},
-      buzzer: function(timer) {},
+      buzzer: function() {
+        // Incrémentation du nombre de cycles à la fin de chaque timers.
+        timer.cycles++;
+        // Si le nombre de cycle est < à 6, lancer la fonction de création d'un nouveau timer.
+        if (timer.cycles < 6) {
+          timer.createTimer();
+        } else {
+          // Sinon, lancer la fonction d'arrêt.
+          //TODO Implémenter la fonction stop.
+          $.notify("Fin du travail.");
+        }
+      },
       autostart: true
     }, user_settings);
   }
@@ -50,12 +61,12 @@
               clearInterval(interval);
               current_time = 0;
             }
-
             timer.data('countdown.duration', current_time * 1000);
             var formatted_time = dateFormat(new Date(current_time * 1000), settings.time_format);
             timer.text(formatted_time);
             settings.tick(timer, current_time, formatted_time);
-
+            // Add current time to tab.
+            document.title = 'Focus ' + formatted_time;
             //If the timer completed, fire the buzzer callback
             current_time == 0 && settings.buzzer(timer);
           } else {
@@ -79,7 +90,6 @@
     getTimerValue: function() {
         return this.data('countdown.duration');
     }
-
   });
 
   /*

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bare - Start Bootstrap Template</title>
+    <title>Minimalist Timer</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -39,10 +39,10 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h1>Pomodoro Timer</h1>
+                <div id="displayTimer"></div>
                 <button id="startTimer" onclick="timer.createTimer()" class="btn btn-info">Start</button>
                 <button id="toggleTimer" onclick="timer.toggleTimer()" class="btn btn-info">Pause</button>
                 <button id="resetTimer" onclick="timer.resetTimer()" class="btn btn-info">Reset</button>
-                <div id="displayTimer"></div>
             </div>
         </div>
         <!-- /.row -->
@@ -52,6 +52,7 @@
 
     <!-- jQuery Version 1.11.1 -->
     <script src="js/jquery.js"></script>
+    <script src="js/notify.min.js"></script>
     <script src="js/countdown.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
