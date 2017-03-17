@@ -88,6 +88,16 @@ var timer = {
         $('#toggleTimer').text("Pause");
     }
   },
+  skipTimer: function() {
+    //TODO Créer un nouveau timer sur le cycle suivant lors du clic sur le bouton skip.
+    timer.cycles++;
+    if(timer.cycles < 6) {
+      timer.createTimer();
+    } else {
+      timer.resetTimer();
+      $.notify("Fin du travail.");
+    }
+  },
   stopTimer: function() {
 
   }
