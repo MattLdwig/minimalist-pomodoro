@@ -13,14 +13,10 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <style>
-    body {
-        padding-top: 70px;
-        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    }
-    </style>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,18 +28,22 @@
 </head>
 
 <body>
-
-    <!-- Page Content -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          Minimalist Pomodoro
+        </a>
+      </div>
+    </div>
+  </nav>
     <div class="container">
 
         <div class="row">
-            <div class="col-lg-12 text-center">
-                <h1>Pomodoro Timer</h1>
-                <div id="displayTimer"></div>
-                <button id="startTimer" onclick="timer.createTimer()" class="btn btn-info">Start</button>
-                <button id="toggleTimer" onclick="timer.toggleTimer()" class="btn btn-info">Pause</button>
-                <button id="resetTimer" onclick="timer.resetTimer()" class="btn btn-info">Reset</button>
-                <button id="resetTimer" onclick="timer.skipTimer()" class="btn btn-info">Skip</button>
+            <div class="jumbotron text-center">
+                <div class="displayTimer" id="displayTimer">25:00</div>
+                <button id="startTimer" class="btn btn-lg controlButton">Start</button>
+                <button id="resetTimer" onclick="timer.resetTimer()" class="btn btn-lg controlButton">Reset</button>
             </div>
         </div>
         <!-- /.row -->

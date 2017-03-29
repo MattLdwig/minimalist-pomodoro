@@ -1,0 +1,16 @@
+.displayTimer {
+  font-size: 5rem;
+}
+
+.controlButton{
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 1px;
+}
+
+.controlButton:hover, .controlButton:focus {
+  background-color: #111;
+  color: #fff;
+  border: none;
+}

@@ -1,34 +1,8 @@
 // VERSION 0.1
 
-// L'app doit afficher un timer. --OK
-  // Chaque seconde, le timer doit afficher le nouveau temps. --OK
-    // Le timer doit se lancer à 25 min. --OK
-    // Arrivé à 0 min 0 seconde, le timer doit s'arrêter. --OK
-
-// L'app doit disposer d'un bouton 'start' pour lancer le timer. --OK
-  // Après un clic, le timer doit se lancer. --OK
-  // Après un clic, le bouton doit afficher 'Pause'. --OK
-
-  // Au second clic, le timer doit se mettre en pause. --OK
-  // Au second clic, le bouton doit afficher 'Reprendre'. --OK
-
-  // Au troisième clic, le timer doit reprendre là où
-  // il s'était mis en pause. --OK
-  // Au troisième clic, le bouton doit afficher 'Pause'. --OK
-
-  // Arrivé à 0min 0 sec, le bouton doit afficher 'Start'. --OK
-
-// VERSION 0.2
-
-// Arrivée au bout du timer de focus, l'app doit switcher sur le timer de courte pause.
-// Arrivée au bout du timer de courte pause, l'app doit switcher sur le timer de focus.
-// Arrivée au bout du timer de focus, l'app doit switcher sur le timer de courte pause.
-// Arrivée au bout du timer de courte pause, l'app doit switcher sur le timer de focus.
-// Arrivée au bout du timer de focus, l'app doit switcher sur le timer de longue pause.
-  // Reset
 var timer = {
   // Initialization des settings par défault.
-  defaultFocusTime : 5,
+  defaultFocusTime : 1499,
   defaultShortBreakTime : 5,
   defaultLongBreakTime: 15,
   active: false,
@@ -58,19 +32,19 @@ var timer = {
       }
       timer.active = true;
       timer.start = true;
-      $('#startTimer').prop("disabled",true);
+      $('#startTimer').text('Pause');
   },
   // Gestion des cycles
   toggleTimer: function() {
     var time_in_seconds =  $("#displayTimer").getTimerValue();
     if(timer.active) {
       $('#displayTimer').pauseTimer();
-      $('#toggleTimer').text('Resume');
+      $('#startTimer').text('Resume');
       timer.active = false;
     }
     else {
       $('#displayTimer').startTimer(time_in_seconds);
-      $('#toggleTimer').text('Pause');
+      $('#startTimer').text('Pause');
       timer.active = true;
     }
   },
@@ -88,17 +62,16 @@ var timer = {
         $('#toggleTimer').text("Pause");
     }
   },
-  skipTimer: function() {
-    //TODO Créer un nouveau timer sur le cycle suivant lors du clic sur le bouton skip.
-    timer.cycles++;
-    if(timer.cycles < 6) {
-      timer.createTimer();
-    } else {
-      timer.resetTimer();
-      $.notify("Fin du travail.");
-    }
-  },
   stopTimer: function() {
 
   }
 }
+
+$('#startTimer').on('click',function(){
+  console.log(timer.active);
+  if(!timer.active && !timer.start) {
+    timer.createTimer();
+  } else {
+    timer.toggleTimer();
+  }
+});
