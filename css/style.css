@@ -14,3 +14,13 @@
   color: #fff;
   border: none;
 }
+
+.form-control, .form-control:focus {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  box-shadow: none;
+  margin-bottom: 1em;
+  font-size: 3rem;
+  height: auto;
+}

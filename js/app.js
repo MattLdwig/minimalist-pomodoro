@@ -67,6 +67,43 @@ var timer = {
   }
 }
 
+var tasksList = {
+  tasks: [],
+  addTask: function(taskText) {
+    this.tasks.push({
+      taskText : taskText,
+      completed: false
+    });
+  }
+}
+
+var handlers = {
+  addTask: function() {
+    var addTaskText = $('#addTaskTextInput');
+    tasksList.addTask(addTaskText.val());
+    console.log(addTaskText.val());
+    addTaskText.value = '';
+    view.displayTask();
+  }
+}
+
+var view = {
+  displayTask: function() {
+    $('.tasksListDisplay').html('');
+
+    tasksList.tasks.forEach(function(task,position){
+
+      var taskLi = document.createElement('li');
+      taskLi.id = position;
+      taskLi.textContent = task.taskText;
+
+      $('.tasksListDisplay').append(taskLi);
+
+    })
+
+  }
+}
+
 $('#startTimer').on('click',function(){
   console.log(timer.active);
   if(!timer.active && !timer.start) {
