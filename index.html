@@ -42,8 +42,14 @@
         <div class="row">
             <div class="jumbotron text-center">
                 <div class="displayTimer" id="displayTimer">25:00</div>
-                <button id="startTimer" class="btn btn-lg controlButton">Start</button>
-                <button id="resetTimer" onclick="timer.resetTimer()" class="btn btn-lg controlButton">Reset</button>
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                  <div class="btn-group" role="group">
+                    <button id="startTimer" class="btn btn-lg controlButton">Start</button>
+                  </div>
+                  <div class="btn-group" role="group">
+                    <button id="resetTimer" onclick="timer.resetTimer()" class="btn btn-lg controlButton">Reset</button>
+                  </div>
+                </div>
             </div>
         </div>
         <!-- /.row -->

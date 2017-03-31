@@ -74,6 +74,10 @@ var tasksList = {
       taskText : taskText,
       completed: false
     });
+  },
+  toggleCompleted: function(position) {
+    var task = this.tasks[position];
+    task.completed = !task.completed;
   }
 }
 
@@ -81,9 +85,11 @@ var handlers = {
   addTask: function() {
     var addTaskText = $('#addTaskTextInput');
     tasksList.addTask(addTaskText.val());
-    console.log(addTaskText.val());
     addTaskText.value = '';
     view.displayTask();
+  },
+  toggleCompleted: function() {
+
   }
 }
 
@@ -95,17 +101,16 @@ var view = {
 
       var taskLi = document.createElement('li');
       taskLi.id = position;
+      taskLi.className = "taskLi";
       taskLi.textContent = task.taskText;
 
       $('.tasksListDisplay').append(taskLi);
 
     })
-
   }
 }
 
 $('#startTimer').on('click',function(){
-  console.log(timer.active);
   if(!timer.active && !timer.start) {
     timer.createTimer();
   } else {
