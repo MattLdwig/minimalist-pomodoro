@@ -67,48 +67,7 @@ var timer = {
   }
 }
 
-var tasksList = {
-  tasks: [],
-  addTask: function(taskText) {
-    this.tasks.push({
-      taskText : taskText,
-      completed: false
-    });
-  },
-  toggleCompleted: function(position) {
-    var task = this.tasks[position];
-    task.completed = !task.completed;
-  }
-}
 
-var handlers = {
-  addTask: function() {
-    var addTaskText = $('#addTaskTextInput');
-    tasksList.addTask(addTaskText.val());
-    addTaskText.value = '';
-    view.displayTask();
-  },
-  toggleCompleted: function() {
-
-  }
-}
-
-var view = {
-  displayTask: function() {
-    $('.tasksListDisplay').html('');
-
-    tasksList.tasks.forEach(function(task,position){
-
-      var taskLi = document.createElement('li');
-      taskLi.id = position;
-      taskLi.className = "taskLi";
-      taskLi.textContent = task.taskText;
-
-      $('.tasksListDisplay').append(taskLi);
-
-    })
-  }
-}
 
 $('#startTimer').on('click',function(){
   if(!timer.active && !timer.start) {
@@ -117,3 +76,39 @@ $('#startTimer').on('click',function(){
     timer.toggleTimer();
   }
 });
+
+var ENTER_KEY = 13;
+
+var App = {
+  todos: [],
+  init: function() {
+    this.todoTemplate = Handlebars.compile($('#todo-template').html());
+    this.bindEvents();
+  },
+  create: function (e) {
+    var $input = $(e.target);
+    var val = $input.val();
+
+    if (e.which !== ENTER_KEY || !val) {
+				return;
+			}
+
+    this.todos.push({
+      id: "test",
+      title: val,
+      completed: false
+    });
+    
+    $input.val('');
+    this.render();
+  },
+  render: function() {
+    var todos = this.todos;
+    $('#todo-list').html(this.todoTemplate(todos));
+  },
+  bindEvents: function() {
+    $('#new-todo').on('keyup', this.create.bind(this));
+  }
+}
+
+App.init();

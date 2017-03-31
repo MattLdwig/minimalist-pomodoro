@@ -63,17 +63,24 @@
         <div class="row">
           <div class="form-group">
             <label for="addTaskTextInput">Task:</label>
-            <input type="text" class="form-control" id="addTaskTextInput">
-            <button onclick="handlers.addTask()">Add</button>
+            <input type="text" class="form-control" id="new-todo">
           </div>
           <!-- /.form-group -->
         </div>
         <!-- /.row -->
 
         <div class="row">
-          <div class="col-md-12">
-            <ul class="tasksListDisplay">
-            </ul>
+          <div class="col-md-12" id="todo-list">
+            <script id="todo-template" type="text/x-handlebars-template">
+      			{{#this}}
+      			<li {{#if completed}}class="completed"{{/if}} data-id="{{id}}">
+      				<div class="view">
+      					<input class="toggle" type="checkbox" {{#if completed}}checked{{/if}}>
+      					<label>{{title}}</label>
+      				</div>
+      			</li>
+      		{{/this}}
+      		</script>
           </div>
           <!-- /.col-md-12 -->
         </div>
@@ -85,6 +92,7 @@
 
     <!-- jQuery Version 1.11.1 -->
     <script src="js/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
     <script src="js/notify.min.js"></script>
     <script src="js/countdown.js"></script>
     <!-- Bootstrap Core JavaScript -->
