@@ -85,6 +85,7 @@ var App = {
     this.todoTemplate = Handlebars.compile($('#todo-template').html());
     this.bindEvents();
   },
+  // /init
   create: function (e) {
     var $input = $(e.target);
     var val = $input.val();
@@ -98,14 +99,16 @@ var App = {
       title: val,
       completed: false
     });
-    
+
     $input.val('');
     this.render();
   },
+  // /create
   render: function() {
     var todos = this.todos;
     $('#todo-list').html(this.todoTemplate(todos));
   },
+  // /render
   bindEvents: function() {
     $('#new-todo').on('keyup', this.create.bind(this));
   }
