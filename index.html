@@ -42,6 +42,7 @@
         <div class="row">
             <div class="jumbotron text-center">
                 <div class="displayTimer" id="displayTimer">25:00</div>
+                <div class="currentTask"></div>
                 <div class="btn-group btn-group-justified" role="group" aria-label="...">
                   <div class="btn-group" role="group">
                     <button id="startTimer" class="btn btn-lg controlButton">Start</button>
@@ -64,7 +65,8 @@
           <div class="col-md-12">
             <h2>Today's tasks:</h2>
           </div>
-          <div class="col-md-12" id="todo-list">
+          <div class="col-md-12">
+            <ul id="todo-list"></ul>
             <script id="todo-template" type="text/x-handlebars-template">
       			{{#this}}
       			<li {{#if completed}}class="completed"{{/if}} data-id="{{id}}">

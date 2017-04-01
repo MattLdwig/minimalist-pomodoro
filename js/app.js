@@ -10,30 +10,7 @@ var timer = {
   // Nombre de cycles pour la gestion des temps de focus et de pauses (courtes et longues).
   cycles : 0,
   // Création du timer.
-  createTimer : function() {
-    //TODO Trouver un moyen plus efficace et plus propre de gérer les différents cycles.
-    // Si le timer est dans son 1er, son 3eme ou son 5eme cycle, lancer le timer de focus.
-      if(timer.cycles === 0 || timer.cycles === 2 || timer.cycles === 4) {
-        $('#displayTimer').createTimer({
-          time_in_seconds: timer.defaultFocusTime
-        });
-      } else if (timer.cycles === 1 || timer.cycles === 3) {
-        // Si le timer est dans son 2d ou son 4eme cycle, lancer le timer de courte pause.
-        console.log('Break');
-        $('#displayTimer').createTimer({
-          time_in_seconds: timer.defaultShortBreakTime
-        });
-      } else {
-        // Sinon, lancer le timer de longue pause.
-        console.log('AFK');
-        $('#displayTimer').createTimer({
-          time_in_seconds: timer.defaultLongBreakTime
-        });
-      }
-      timer.active = true;
-      timer.start = true;
-      $('#startTimer').text('Pause');
-  },
+
   // Gestion des cycles
   toggleTimer: function() {
     var time_in_seconds =  $("#displayTimer").getTimerValue();
@@ -68,15 +45,6 @@ var timer = {
 }
 
 
-
-$('#startTimer').on('click',function(){
-  if(!timer.active && !timer.start) {
-    timer.createTimer();
-  } else {
-    timer.toggleTimer();
-  }
-});
-
 var ENTER_KEY = 13;
 
 var App = {
@@ -85,7 +53,15 @@ var App = {
     this.todoTemplate = Handlebars.compile($('#todo-template').html());
     this.bindEvents();
   },
-  // /init
+
+  createTimer : function() {
+    $('#displayTimer').createTimer({
+        time_in_seconds: timer.defaultFocusTime
+    });
+    timer.active = true;
+    timer.start = true;
+    $('#startTimer').text('Pause');
+  },
   create: function (e) {
     var $input = $(e.target);
     var val = $input.val();
@@ -97,20 +73,50 @@ var App = {
     this.todos.push({
       id: "test",
       title: val,
-      completed: false
+      completed: false,
     });
 
     $input.val('');
     this.render();
   },
-  // /create
+  getIndexFromEl: function (el) {
+			var id = $(el).closest('li').data('id');
+			var todos = this.todos;
+			var i = todos.length;
+
+			while (i--) {
+				if (todos[i].id === id) {
+					return i;
+				}
+			}
+		},
+  /*
+  setPriority: function() {
+    var priority = this.todos.findIndex(prop => prop.priority=1);
+    console.log(priority);
+  },
+  */
   render: function() {
     var todos = this.todos;
     $('#todo-list').html(this.todoTemplate(todos));
   },
-  // /render
+  toggle: function (e) {
+			var i = this.getIndexFromEl(e.target);
+			this.todos[i].completed = !this.todos[i].completed;
+			this.render();
+		},
   bindEvents: function() {
     $('#new-todo').on('keyup', this.create.bind(this));
+    $('#startTimer').on('click',function(){
+      if(!timer.active && !timer.start) {
+        App.createTimer();
+      } else {
+        timer.toggleTimer();
+      }
+      // TODO Moyen temporaire d'afficher la tache courante en haut de page.
+      $('.currentTask').html(App.todos[0].title);
+    });
+    $('#todo-list').on('change', '.toggle', this.toggle.bind(this));
   }
 }
 
