@@ -46,3 +46,8 @@ html {
 .completed {
   color: #ccc;
 }
+
+.activeFeedback {
+  font-size: 1.3rem;
+  color: #ccc;
+}

@@ -74,6 +74,7 @@ var App = {
       id: "test",
       title: val,
       completed: false,
+      active: false
     });
 
     $input.val('');
@@ -104,6 +105,7 @@ var App = {
 			var i = this.getIndexFromEl(e.target);
 			this.todos[i].completed = !this.todos[i].completed;
 			this.render();
+      console.log(this.todos[i]);
 		},
   bindEvents: function() {
     $('#new-todo').on('keyup', this.create.bind(this));
@@ -117,6 +119,11 @@ var App = {
       $('.currentTask').html(App.todos[0].title);
     });
     $('#todo-list').on('change', '.toggle', this.toggle.bind(this));
+    /*$('#startTimer').on('click', function(){
+      App.todos[0].active = true;
+      App.render()
+    });
+    */
   }
 }
 
