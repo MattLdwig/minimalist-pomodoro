@@ -47,6 +47,18 @@ var timer = {
 
 var ENTER_KEY = 13;
 
+var util = {
+  guid: function() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+      s4() + '-' + s4() + s4() + s4();
+  }
+}
+
 var App = {
   todos: [],
   init: function() {
@@ -71,10 +83,9 @@ var App = {
 			}
 
     this.todos.push({
-      id: "test",
+      id: util.guid(),
       title: val,
       completed: false,
-      active: false
     });
 
     $input.val('');
@@ -98,15 +109,26 @@ var App = {
   },
   */
   render: function() {
-    var todos = this.todos;
+    var todos = this.getTodos();
+    var completedTodos = this.getCompletedTodos();
     $('#todo-list').html(this.todoTemplate(todos));
+    $('#todo-list-completed').html(this.todoTemplate(completedTodos));
   },
   toggle: function (e) {
-			var i = this.getIndexFromEl(e.target);
-			this.todos[i].completed = !this.todos[i].completed;
-			this.render();
-      console.log(this.todos[i]);
+    var i = this.getIndexFromEl(e.target);
+    this.todos[i].completed = !this.todos[i].completed;
+    this.render();
+  },
+  getCompletedTodos: function () {
+			return this.todos.filter(function (todo) {
+				return todo.completed;
+			});
 		},
+  getTodos: function () {
+  	return this.todos.filter(function (todo) {
+  		return !todo.completed;
+  	});
+  },
   bindEvents: function() {
     $('#new-todo').on('keyup', this.create.bind(this));
     $('#startTimer').on('click',function(){
@@ -115,15 +137,11 @@ var App = {
       } else {
         timer.toggleTimer();
       }
-      // TODO Moyen temporaire d'afficher la tache courante en haut de page.
-      $('.currentTask').html(App.todos[0].title);
+    // TODO Moyen temporaire d'afficher la tache courante en haut de page.
+    $('.currentTask').html(App.todos[0].title);
     });
     $('#todo-list').on('change', '.toggle', this.toggle.bind(this));
-    /*$('#startTimer').on('click', function(){
-      App.todos[0].active = true;
-      App.render()
-    });
-    */
+    $('#todo-list-completed').on('change', '.toggle', this.toggle.bind(this));
   }
 }
 

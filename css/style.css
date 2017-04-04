@@ -34,7 +34,7 @@ html {
   font-size: 2rem;
 }
 
-[data-id="test"] {
+li {
   list-style: none;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;

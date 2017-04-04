@@ -67,17 +67,16 @@
           </div>
           <div class="col-md-12">
             <ul id="todo-list"></ul>
-            <script id="todo-template" type="text/x-handlebars-template">
-      			{{#this}}
-      			<li {{#if completed}}class="completed"{{/if}}data-id="{{id}}">
-      				<div class="view">
-      					<input class="toggle" type="checkbox" {{#if completed}}checked{{/if}}>
-      					<label>{{title}}</label>
-
-      				</div>
-      			</li>
-      		{{/this}}
-      		</script>
+              <script id="todo-template" type="text/x-handlebars-template">
+        			{{#this}}
+        			<li {{#if completed}}class="completed"{{/if}} data-id="{{id}}">
+        				<div class="view">
+        					<input class="toggle" type="checkbox" {{#if completed}}checked{{/if}}>
+        					<label>{{title}}</label>
+        				</div>
+        			</li>
+        		{{/this}}
+        		</script>
           </div>
           <!-- /.col-md-12 -->
         </div>
@@ -91,6 +90,24 @@
         </div>
         <!-- /.row -->
 
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Tasks Completed </h2>
+          </div>
+          <div class="col-md-12">
+            <ul id="todo-list-completed"></ul>
+              <script id="todo-template-completed" type="text/x-handlebars-template">
+        			{{#this}}
+        			<li {{#if completed}}class="completed"{{/if}} data-id="{{id}}">
+        				<div class="view">
+        					<input class="toggle" type="checkbox" {{#if completed}}checked{{/if}}>
+        					<label>{{title}}</label>
+        				</div>
+        			</li>
+        		{{/this}}
+        		</script>
+          </div>
+        </div>
       </div>
       <!-- /.container -->
 
