@@ -137,7 +137,7 @@ var App = {
       } else {
         timer.toggleTimer();
       }
-    // TODO Moyen temporaire d'afficher la tache courante en haut de page.
+    // TODO Moyen temporaire d'afficher la tache courante en haut de page.;
     $('.currentTask').html(App.todos[0].title);
     });
     $('#todo-list').on('change', '.toggle', this.toggle.bind(this));
