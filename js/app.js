@@ -113,6 +113,12 @@ var App = {
     var completedTodos = this.getCompletedTodos();
     $('#todo-list').html(this.todoTemplate(todos));
     $('#todo-list-completed').html(this.todoTemplate(completedTodos));
+
+    if(this.getTodos().length > 0) {
+      $('.inputTask').hide();
+    } else {
+        $('.inputTask').show();
+    }
   },
   toggle: function (e) {
     var i = this.getIndexFromEl(e.target);

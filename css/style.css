@@ -36,15 +36,16 @@ html {
 
 li {
   list-style: none;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
   font-size: 22px;
   font-weight: 400;
   padding: 20px;
+  text-align: center;
 }
+
 
 .completed {
   color: #ccc;
+  text-align: left;
 }
 
 .activeFeedback {
