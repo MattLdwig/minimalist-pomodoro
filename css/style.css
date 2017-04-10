@@ -1,12 +1,17 @@
 html {
   font-size: 16px;
 }
+
+body {
+  color: #95989A;
+}
+
 .displayTimer {
   font-size: 5rem;
 }
 
 .controlButton{
-  background-color: #333;
+  background-color: #A85BFF;
   color: #fff;
   border: none;
   border-radius: 1px;
@@ -24,9 +29,13 @@ html {
   border-right: none;
   box-shadow: none;
   margin-bottom: 1em;
-  font-size: 3rem;
+  font-size: 22px;
   height: auto;
 }
+.tasksList {
+  margin-top: 3rem;
+}
+
 
 .tasksListDisplay {
   margin: 0;
@@ -48,7 +57,24 @@ li {
   text-align: left;
 }
 
+.delete {
+  color: #95989A;
+}
+
 .activeFeedback {
   font-size: 1.3rem;
   color: #ccc;
+}
+
+.session {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid #95989A;
+  padding: 0;
+}
+
+.session-completed {
+  border: none;
+  background-color: #A85BFF;
 }

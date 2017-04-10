@@ -17,9 +17,10 @@
       buzzer: function() {
         // Incrémentation du nombre de cycles à la fin de chaque timers.
         timer.cycles++;
+        App.test();
         // Si le nombre de cycle est < à 6, lancer la fonction de création d'un nouveau timer.
         if (timer.cycles < 6) {
-          timer.createTimer();
+          App.createTimer();
         } else {
           // Sinon, lancer la fonction d'arrêt.
           //TODO Implémenter la fonction stop.

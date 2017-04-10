@@ -2,7 +2,7 @@
 
 var timer = {
   // Initialization des settings par défault.
-  defaultFocusTime : 1499,
+  defaultFocusTime : 5,
   defaultShortBreakTime : 5,
   defaultLongBreakTime: 15,
   active: false,
@@ -61,6 +61,12 @@ var util = {
 
 var App = {
   todos: [],
+  test: function() {
+    var session = $('.pomodoro-sessions').children();
+    for(var i = 0; i < timer.cycles ; i++) {
+      $('.pomodoro-sessions li:nth-child('+timer.cycles+')').addClass('session-completed');
+    }
+  },
   init: function() {
     this.todoTemplate = Handlebars.compile($('#todo-template').html());
     this.bindEvents();
@@ -86,9 +92,14 @@ var App = {
       id: util.guid(),
       title: val,
       completed: false,
+      pomodoros: 0
     });
 
     $input.val('');
+    this.render();
+  },
+  delete: function (e) {
+    this.todos.splice(this.getIndexFromEl(e.target), 1);
     this.render();
   },
   getIndexFromEl: function (el) {
@@ -125,6 +136,10 @@ var App = {
     this.todos[i].completed = !this.todos[i].completed;
     this.render();
   },
+  setPomo: function (e) {
+    var i = this.getIndexFromEl(e.target);
+    this.todos[i].pomodoros++;
+  },
   getCompletedTodos: function () {
 			return this.todos.filter(function (todo) {
 				return todo.completed;
@@ -137,6 +152,7 @@ var App = {
   },
   bindEvents: function() {
     $('#new-todo').on('keyup', this.create.bind(this));
+
     $('#startTimer').on('click',function(){
       if(!timer.active && !timer.start) {
         App.createTimer();
@@ -145,9 +161,12 @@ var App = {
       }
     // TODO Moyen temporaire d'afficher la tache courante en haut de page.;
     $('.currentTask').html(App.todos[0].title);
+
     });
+
     $('#todo-list').on('change', '.toggle', this.toggle.bind(this));
     $('#todo-list-completed').on('change', '.toggle', this.toggle.bind(this));
+    $('#todo-list').on('click', '.delete', this.delete.bind(this));
   }
 }
 
