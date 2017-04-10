@@ -66,9 +66,13 @@ li {
   color: #ccc;
 }
 
+.pomodoro-sessions {
+  text-align: center;
+}
+
 .session {
-  width: 15px;
-  height: 15px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: 1px solid #95989A;
   padding: 0;

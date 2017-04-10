@@ -45,33 +45,22 @@ var timer = {
 }
 
 
-var ENTER_KEY = 13;
+
 
 var util = {
-  guid: function() {
-    function s4() {
-      return Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
-    }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-      s4() + '-' + s4() + s4() + s4();
-  }
+
 }
 
 var App = {
-  todos: [],
+  init: function() {
+    this.bindEvents();
+  },
   test: function() {
     var session = $('.pomodoro-sessions').children();
     for(var i = 0; i < timer.cycles ; i++) {
       $('.pomodoro-sessions li:nth-child('+timer.cycles+')').addClass('session-completed');
     }
   },
-  init: function() {
-    this.todoTemplate = Handlebars.compile($('#todo-template').html());
-    this.bindEvents();
-  },
-
   createTimer : function() {
     $('#displayTimer').createTimer({
         time_in_seconds: timer.defaultFocusTime
@@ -80,78 +69,9 @@ var App = {
     timer.start = true;
     $('#startTimer').text('Pause');
   },
-  create: function (e) {
-    var $input = $(e.target);
-    var val = $input.val();
-
-    if (e.which !== ENTER_KEY || !val) {
-				return;
-			}
-
-    this.todos.push({
-      id: util.guid(),
-      title: val,
-      completed: false,
-      pomodoros: 0
-    });
-
-    $input.val('');
-    this.render();
-  },
-  delete: function (e) {
-    this.todos.splice(this.getIndexFromEl(e.target), 1);
-    this.render();
-  },
-  getIndexFromEl: function (el) {
-			var id = $(el).closest('li').data('id');
-			var todos = this.todos;
-			var i = todos.length;
-
-			while (i--) {
-				if (todos[i].id === id) {
-					return i;
-				}
-			}
-		},
-  /*
-  setPriority: function() {
-    var priority = this.todos.findIndex(prop => prop.priority=1);
-    console.log(priority);
-  },
-  */
   render: function() {
-    var todos = this.getTodos();
-    var completedTodos = this.getCompletedTodos();
-    $('#todo-list').html(this.todoTemplate(todos));
-    $('#todo-list-completed').html(this.todoTemplate(completedTodos));
-
-    if(this.getTodos().length > 0) {
-      $('.inputTask').hide();
-    } else {
-        $('.inputTask').show();
-    }
-  },
-  toggle: function (e) {
-    var i = this.getIndexFromEl(e.target);
-    this.todos[i].completed = !this.todos[i].completed;
-    this.render();
-  },
-  setPomo: function (e) {
-    var i = this.getIndexFromEl(e.target);
-    this.todos[i].pomodoros++;
-  },
-  getCompletedTodos: function () {
-			return this.todos.filter(function (todo) {
-				return todo.completed;
-			});
-		},
-  getTodos: function () {
-  	return this.todos.filter(function (todo) {
-  		return !todo.completed;
-  	});
   },
   bindEvents: function() {
-    $('#new-todo').on('keyup', this.create.bind(this));
 
     $('#startTimer').on('click',function(){
       if(!timer.active && !timer.start) {
@@ -159,14 +79,7 @@ var App = {
       } else {
         timer.toggleTimer();
       }
-    // TODO Moyen temporaire d'afficher la tache courante en haut de page.;
-    $('.currentTask').html(App.todos[0].title);
-
     });
-
-    $('#todo-list').on('change', '.toggle', this.toggle.bind(this));
-    $('#todo-list-completed').on('change', '.toggle', this.toggle.bind(this));
-    $('#todo-list').on('click', '.delete', this.delete.bind(this));
   }
 }
 
