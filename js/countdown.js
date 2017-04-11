@@ -16,10 +16,14 @@
       tick: function(timer, time_in_seconds, formatted_time) {},
       buzzer: function() {
         // Incrémentation du nombre de cycles à la fin de chaque timers.
-        timer.cycles++;
-        App.test();
-        // Si le nombre de cycle est < à 6, lancer la fonction de création d'un nouveau timer.
-        if (timer.cycles < 6) {
+        App.cycles++;
+
+        if((App.cycles % 2) === 0) {
+          console.log(App.cycles);
+          App.setFeedbackCycles();
+        }
+
+        if (App.cycles < 8) {
           App.createTimer();
         } else {
           // Sinon, lancer la fonction d'arrêt.
