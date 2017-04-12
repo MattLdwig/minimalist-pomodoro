@@ -73,12 +73,25 @@ li {
 .session {
   width: 30px;
   height: 30px;
-  border-radius: 50%;
+
   border: 1px solid #95989A;
   padding: 0;
+}
+
+.short-break, .long-break {
+  width: 25px;
+  height: 25px;
 }
 
 .session-completed {
   border: none;
   background-color: #A85BFF;
+}
+
+.short-break.session-completed, .long-break.session-completed {
+  background-color: blue;
+}
+
+.ui-widget-header {
+  background: #A85BFF;
 }

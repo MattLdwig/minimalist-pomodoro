@@ -3,17 +3,20 @@
 var App = {
 	init: function() {
 		this.bindEvents();
-		this.defaultFocusTime = 7;
-		this.defaultShortBreakTime = 5;
+		this.defaultFocusTime = 5;
+		this.defaultShortBreakTime = 3;
 		this.defaultLongBreakTime = 15;
 		this.active = false;
 		this.start = false;
 		this.cycles = 0;
+		$( "#progressbar" ).progressbar({
+  		value: 0
+		});
 	},
 	setFeedbackCycles: function() {
 		var session = $('.pomodoro-sessions').children();
 		for (var i = 0; i < App.cycles; i++) {
-			$('.pomodoro-sessions li:nth-child(' + (App.cycles / 2) + ')').addClass('session-completed');
+			$('.pomodoro-sessions li:nth-child(' + App.cycles + ')').addClass('session-completed');
 		}
 	},
   setTime: function() {
@@ -48,16 +51,12 @@ var App = {
 		App.start = true;
 		$('#startTimer').text('Pause');
 	},
-  animateProgressBar: function() {
-    var i = 0;
-    var counterBack = setInterval(function () {
-      i+= (100/App.setTime());
-      if (i < 100) {
-        $('.progress-bar').css('width', i + '%');
-      } else {
-        clearInterval(counterBack);
-      }
-  }, 1000);
+  animateProgressBar: function(current_time) {
+		var setTime = this.setTime();
+		var step = 100 / setTime;
+		var progressbar_duration = current_time*step;
+		progressbar_duration = 100 - progressbar_duration;
+		$( "#progressbar" ).progressbar( "value", progressbar_duration );
   },
 	toggleTimer: function() {
 		var time_in_seconds = $("#displayTimer").getTimerValue();

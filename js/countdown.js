@@ -18,10 +18,7 @@
         // Incrémentation du nombre de cycles à la fin de chaque timers.
         App.cycles++;
 
-        if((App.cycles % 2) === 0) {
-          console.log(App.cycles);
           App.setFeedbackCycles();
-        }
 
         if (App.cycles < 8) {
           App.createTimer();
@@ -74,6 +71,7 @@
             document.title = 'Focus ' + formatted_time;
             //If the timer completed, fire the buzzer callback
             current_time == 0 && settings.buzzer(timer);
+            App.animateProgressBar(current_time);
           } else {
             clearInterval(interval);
           }
