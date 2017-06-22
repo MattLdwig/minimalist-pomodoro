@@ -17,15 +17,19 @@
       buzzer: function() {
         // Incrémentation du nombre de cycles à la fin de chaque timers.
         App.cycles++;
-
-          App.setFeedbackCycles();
+        App.feedback();
 
         if (App.cycles < 8) {
           App.createTimer();
+          if(App.cycles %2 !== 0) {
+            $.notify("Take a break !");
+          } else {
+            $.notify("JUST DO IT !");
+          }
         } else {
           // Sinon, lancer la fonction d'arrêt.
           //TODO Implémenter la fonction stop.
-          $.notify("Fin du travail.");
+          $.notify("Congratulation ! You've reach the end");
         }
       },
       autostart: true
@@ -68,10 +72,9 @@
             timer.text(formatted_time);
             settings.tick(timer, current_time, formatted_time);
             // Add current time to tab.
-            document.title = 'Focus ' + formatted_time;
-            //If the timer completed, fire the buzzer callback
+            document.title = formatted_time;
+            //If the timer completed, fire tdocument.titlehe buzzer callback
             current_time == 0 && settings.buzzer(timer);
-            App.animateProgressBar(current_time);
           } else {
             clearInterval(interval);
           }

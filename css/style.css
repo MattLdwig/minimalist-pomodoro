@@ -1,97 +1,121 @@
 html {
   font-size: 16px;
 }
+html,body {
+  height: 100%;
+  min-height: 100%;
+}
 
 body {
-  color: #95989A;
+  color: #666;
+  font-weight: 300;
+  font-family: 'Titillium Web', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  color: #CC927A;
+}
+
+a:hover {
+  color: #666;
+}
+
+.navbar {
+  align-self: flex-start;
+  position: fixed;
+  top:0;
+  width: 100%;
+  background: #fafafa;
+  border: none;
+  text-align: center;
+}
+
+.feedback {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.pomoCounter {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+.breakSession {
+    background-color: #CC927A;
+}
+.workSession {
+  background-color: #567356;
+}
+
+.container-fluid>.navbar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: none;
+}
+
+.label-before {
+  font-size: 3rem;
 }
 
 .displayTimer {
-  font-size: 5rem;
+  font-size: 10rem;
+}
+
+.btn-group-lg>.btn, .btn-lg {
+  margin: 0 10px;
 }
 
 .controlButton{
-  background-color: #A85BFF;
+  background-color: #666;
   color: #fff;
   border: none;
   border-radius: 1px;
 }
 
 .controlButton:hover, .controlButton:focus {
-  background-color: #111;
+  background-color: #333;
   color: #fff;
   border: none;
-}
-
-.form-control, .form-control:focus {
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  box-shadow: none;
-  margin-bottom: 1em;
-  font-size: 22px;
-  height: auto;
-}
-.tasksList {
-  margin-top: 3rem;
-}
-
-
-.tasksListDisplay {
-  margin: 0;
-  padding: 0;
-  font-size: 2rem;
-}
-
-li {
-  list-style: none;
-  font-size: 22px;
-  font-weight: 400;
-  padding: 20px;
-  text-align: center;
-}
-
-
-.completed {
-  color: #ccc;
-  text-align: left;
 }
 
 .delete {
   color: #95989A;
 }
 
-.activeFeedback {
-  font-size: 1.3rem;
-  color: #ccc;
-}
-
-.pomodoro-sessions {
+.credits {
+  display: block;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
   text-align: center;
+  font-size: 1.2rem;
 }
 
-.session {
-  width: 30px;
-  height: 30px;
-
-  border: 1px solid #95989A;
-  padding: 0;
+.fa-heart {
+  color: #CC927A;
 }
 
-.short-break, .long-break {
-  width: 25px;
-  height: 25px;
+.donate {
+  text-align: right;
 }
 
-.session-completed {
-  border: none;
-  background-color: #A85BFF;
-}
 
-.short-break.session-completed, .long-break.session-completed {
-  background-color: blue;
-}
-
-.ui-widget-header {
-  background: #A85BFF;
+@media screen and (max-width: 415px) {
+  .displayTimer {
+    font-size: 7rem;
+  }
+  .credits {
+    font-size: 1rem;
+    padding: 10px;
+  }
 }

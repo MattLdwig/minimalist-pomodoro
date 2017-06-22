@@ -9,12 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Minimalist Timer</title>
+    <title>MiniPomo</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -33,47 +34,43 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">
-          Minimalist Pomodoro
+        <a class="navbar-brand" href="http://www.minipomo.co">
+          minipomo.co
         </a>
       </div>
     </div>
   </nav>
+  <div class="feedback"></div>
     <div class="container">
 
         <div class="row">
             <div class="text-center">
+
                 <div class="displayTimer" id="displayTimer">25:00</div>
-                <div id="progressbar"></div>
-                <div class="currentTask"></div>
 
                     <div class="btn-group" role="group">
-                      <button id="startTimer" class="btn btn-lg controlButton">Start</button>
+                      <button id="startTimer" data-toggle="tooltip" title="Start the timer" class="btn btn-lg controlButton"><i class="fa fa-play" aria-hidden="true"></i></button>
                     </div>
+
+
                     <div class="btn-group" role="group">
-                      <button id="resetTimer" onclick="timer.resetTimer()" class="btn btn-lg controlButton">Reset</button>
+                      <button id="refreshTimer" data-toggle="tooltip" title="Stop and reset the timer" class="btn btn-lg controlButton"><i class="fa fa-stop" aria-hidden="true"></i></button>
                     </div>
+
+
             </div>
         </div>
         <!-- /.row -->
-      <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-          <ul class="pomodoro-sessions list-inline">
-            <li class="session work"></li>
-            <li class="session short-break"></li>
-            <li class="session work"></li>
-            <li class="session short-break"></li>
-            <li class="session work"></li>
-            <li class="session short-break"></li>
-            <li class="session work"></li>
-            <li class="session long-break"></li>
-          </ul>
-        </div>
-      </div>
+
     </div>
     <!-- /.container -->
 
+    <span class="credits">
+      <p class="shortcuts">Press <b>Space</b> for start or Pause the timer.</p>
+      <p>Made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="http://www.twitter.com/mattldwig">Matt Ludwig</a>.   <span class="donate">Enjoy this site? <a href="http://www.paypal.me/mattldwig">Buy me a Coffee</a></span></p>
 
+
+    </span>
     <!-- jQuery Version 1.11.1 -->
     <script src="js/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
