@@ -7,8 +7,42 @@
  *
  * Dual licensed under the MIT (MIT-LICENSE.txt) and GPL (GPL-LICENSE.txt) licenses.
  */
+
 (function($) {
   function configuration(user_settings) {
+
+    $.notify.addStyle('break', {
+      html: "<div>\u{1F44F}<span data-notify-text/>\u{1F44F}</div>",
+      classes: {
+        base: {
+          "white-space": "nowrap",
+          "background-color": "white",
+          "padding": "5px",
+          "color": 'lightsalmon'
+        },
+        superblue: {
+          "color": "white",
+          "background-color": "blue"
+        }
+      }
+    });
+
+    $.notify.addStyle('justDoIt', {
+      html: "<div>\u{1F4AA}<span data-notify-text/>\u{1F4AA}</div>",
+      classes: {
+        base: {
+          "white-space": "nowrap",
+          "background-color": "white",
+          "padding": "5px",
+          "color": 'lightsalmon'
+        },
+        superblue: {
+          "color": "white",
+          "background-color": "blue"
+        }
+      }
+    });
+
     //Override the default settings with the user settings
     return $.extend({
       time_in_seconds: 3600,
@@ -22,9 +56,13 @@
         if (App.cycles < 8) {
           App.createTimer();
           if(App.cycles %2 !== 0) {
-            $.notify("Take a break !");
+            $.notify("Take a break", {
+              style: 'break'
+            });
           } else {
-            $.notify("JUST DO IT !");
+            $.notify("JUST DO IT", {
+              style: 'justDoIt'
+            });
           }
         } else {
           // Sinon, lancer la fonction d'arrêt.

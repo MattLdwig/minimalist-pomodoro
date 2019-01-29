@@ -1,5 +1,7 @@
 html {
-  font-size: 16px;
+  font-size: 18px;
+  box-sizing: border-box;
+
 }
 html,body {
   height: 100%;
@@ -9,9 +11,15 @@ html,body {
 body {
   color: #666;
   font-weight: 300;
-  font-family: 'Titillium Web', sans-serif;
-  display: flex;
-  flex-direction: column;
+  font-family: 'Titillium Web', sans-serif; 
+  margin: 0;
+}
+
+.minipomo {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr 100px;
+  grid-template-columns: 1fr;
   align-items: center;
   justify-content: center;
 }
@@ -25,42 +33,29 @@ a:hover {
 }
 
 .navbar {
-  align-self: flex-start;
-  position: fixed;
-  top:0;
   width: 100%;
-  background: #fafafa;
+  background: lightsalmon;
   border: none;
   text-align: center;
+  padding: 10px 0;
+}
+.navbar a {
+  color: white;
+
 }
 
-.feedback {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-
-.pomoCounter {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  margin-left: 10px;
-}
-.breakSession {
-    background-color: #CC927A;
-}
-.workSession {
-  background-color: #567356;
-}
-
-.container-fluid>.navbar-header {
-  display: flex;
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   justify-content: center;
-  float: none;
+}
+
+.breakSession {
+    background-color: #666;
+}
+.workSession {
+  background-color: lightsalmon;
 }
 
 .label-before {
@@ -69,14 +64,26 @@ a:hover {
 
 .displayTimer {
   font-size: 10rem;
+  grid-column: 1 / -1;
+  align-self: center;
+  justify-self: center;
 }
 
-.btn-group-lg>.btn, .btn-lg {
-  margin: 0 10px;
+.btn-group {
+  display: grid;
+  grid-template: 40px / 1fr 1fr;
+  grid-gap: 10px;
+  grid-column: 2/3;
 }
+
+.shortcuts {
+  grid-column: 2 / 3;
+  text-align: center;
+}
+
 
 .controlButton{
-  background-color: #666;
+  background-color: lightsalmon;
   color: #fff;
   border: none;
   border-radius: 1px;
@@ -88,17 +95,22 @@ a:hover {
   border: none;
 }
 
+.feedback {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 20px);
+  grid-gap: 5px;
+  height: 20px;
+  grid-column: 2/3;
+}
+
 .delete {
   color: #95989A;
 }
 
 .credits {
-  display: block;
-  position: absolute;
-  bottom: 10px;
   width: 100%;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .fa-heart {
@@ -110,12 +122,30 @@ a:hover {
 }
 
 
+
+
+@media screen and (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+  .displayTimer {
+    font-size: 6rem;
+  }
+}
+
+
 @media screen and (max-width: 415px) {
   .displayTimer {
-    font-size: 7rem;
+    font-size: 4rem;
+  }
+  .btn-group {
+    grid-template: 20px / 1fr 1fr;
   }
   .credits {
-    font-size: 1rem;
+    font-size: 0.7rem;
+  }
+
+  .madewithlove {
     padding: 10px;
   }
 }

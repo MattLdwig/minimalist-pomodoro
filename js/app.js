@@ -1,11 +1,15 @@
 // VERSION 0.2
-var audio = new Audio('sound.wav');
-var App = {
+const audio = new Audio('sound.wav');
+const defaultFocus = 25 * 60,
+			defautShortBreak = 5 * 60,
+			defaultLongBreak = 15 * 60;
+
+const App = {
 	init: function() {
 		this.bindEvents();
-		this.defaultFocusTime = 25*60;
-		this.defaultShortBreakTime = 5*60;
-		this.defaultLongBreakTime = 15*60;
+		this.defaultFocusTime = defaultFocus;
+		this.defaultShortBreakTime = defautShortBreak;
+		this.defaultLongBreakTime = defaultLongBreak;
 		this.active = false;
 		this.start = false;
 		this.cycles = 0;
@@ -64,7 +68,7 @@ var App = {
 		App.toggleTooltip();
 	},
 	toggleTimer: function() {
-		var time_in_seconds = $("#displayTimer").getTimerValue();
+		const time_in_seconds = $("#displayTimer").getTimerValue();
 		if (App.active) {
 			$('#displayTimer').pauseTimer();
 			$('#startTimer').html('<i class="fa fa-play" aria-hidden="true"></i>');
@@ -77,7 +81,7 @@ var App = {
 		App.toggleTooltip();
 	},
 	toggleTooltip: function() {
-		var tooltip = $('#startTimer').attr('title');
+		const tooltip = $('#startTimer').attr('title');
 		if(App.start){
 			if(tooltip === 'Start the timer' || tooltip === 'Continue working') {
 				$('#startTimer').attr('title', 'Pause the timer');
@@ -103,7 +107,7 @@ var App = {
 	},
 	bindEvents: function() {
 		$('body').keyup(function(e){
-			var code = e.which;
+			const code = e.which;
 			if(code === 32){
 				App.timerMaster();
 			}
